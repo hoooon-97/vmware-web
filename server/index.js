@@ -28,7 +28,9 @@ app.get('/api/health', (req, res) => {
 // Serve static frontend in production
 const clientBuild = path.join(__dirname, '..', 'client', 'dist');
 app.use(express.static(clientBuild));
-app.get('*', (req, res) => {
+
+// Catch-all route for SPA - use regex instead of wildcard
+app.get(/^\/(?!api).*/, (req, res) => {
   res.sendFile(path.join(clientBuild, 'index.html'));
 });
 
