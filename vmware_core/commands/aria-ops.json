@@ -1,0 +1,211 @@
+{
+  "category": "Aria Ops",
+  "description": "VMware Aria Operations (vRealize Operations) 관리",
+  "connectionType": "api",
+  "baseUrl": "https://{host}/suite-api",
+  "commands": [
+    {
+      "id": "aria-adapters",
+      "name": "어댑터 종류",
+      "method": "GET",
+      "endpoint": "/api/adapterkinds",
+      "description": "등록된 어댑터 종류"
+    },
+    {
+      "id": "aria-resources",
+      "name": "리소스 목록",
+      "method": "GET",
+      "endpoint": "/api/resources?pageSize=50",
+      "description": "모니터링 리소스"
+    },
+    {
+      "id": "aria-resource-types",
+      "name": "리소스 유형",
+      "method": "GET",
+      "endpoint": "/api/resourcetypes",
+      "description": "리소스 유형 목록"
+    },
+    {
+      "id": "aria-alerts",
+      "name": "경고 목록",
+      "method": "GET",
+      "endpoint": "/api/alerts?activeAlertsOnly=true&pageSize=50",
+      "description": "활성 경고"
+    },
+    {
+      "id": "aria-alerts-critical",
+      "name": "긴급 경고",
+      "method": "GET",
+      "endpoint": "/api/alerts?alertCriticality=CURRENT&severity=CRITICAL",
+      "description": "긴급(Critical) 경고"
+    },
+    {
+      "id": "aria-symptoms",
+      "name": "증상 정의",
+      "method": "GET",
+      "endpoint": "/api/symptoms?pageSize=50",
+      "description": "증상 정의 목록"
+    },
+    {
+      "id": "aria-recommendations",
+      "name": "권장사항",
+      "method": "GET",
+      "endpoint": "/api/recommendations?pageSize=50",
+      "description": "권장사항 목록"
+    },
+    {
+      "id": "aria-dashboards",
+      "name": "대시보드",
+      "method": "GET",
+      "endpoint": "/api/dashboards",
+      "description": "대시보드 목록"
+    },
+    {
+      "id": "aria-widgets",
+      "name": "위젯 목록",
+      "method": "GET",
+      "endpoint": "/api/widgets",
+      "description": "위젯 목록"
+    },
+    {
+      "id": "aria-policies",
+      "name": "정책 목록",
+      "method": "GET",
+      "endpoint": "/api/policies",
+      "description": "모니터링 정책"
+    },
+    {
+      "id": "aria-credentials",
+      "name": "인증 종류",
+      "method": "GET",
+      "endpoint": "/api/credentialkinds",
+      "description": "인증 정보 종류"
+    },
+    {
+      "id": "aria-users",
+      "name": "사용자 목록",
+      "method": "GET",
+      "endpoint": "/api/auth/users",
+      "description": "등록 사용자"
+    },
+    {
+      "id": "aria-user-groups",
+      "name": "사용자 그룹",
+      "method": "GET",
+      "endpoint": "/api/auth/usergroups",
+      "description": "사용자 그룹"
+    },
+    {
+      "id": "aria-roles",
+      "name": "역할 목록",
+      "method": "GET",
+      "endpoint": "/api/auth/roles",
+      "description": "역할 목록"
+    },
+    {
+      "id": "aria-version",
+      "name": "버전 정보",
+      "method": "GET",
+      "endpoint": "/api/versions",
+      "description": "Aria Ops 버전"
+    },
+    {
+      "id": "aria-cluster",
+      "name": "클러스터 상태",
+      "method": "GET",
+      "endpoint": "/api/cluster/status",
+      "description": "클러스터 상태"
+    },
+    {
+      "id": "aria-nodes",
+      "name": "노드 목록",
+      "method": "GET",
+      "endpoint": "/api/cluster/nodes",
+      "description": "클러스터 노드"
+    },
+    {
+      "id": "aria-collectors",
+      "name": "콜렉터 그룹",
+      "method": "GET",
+      "endpoint": "/api/collectorgroups",
+      "description": "콜렉터 그룹"
+    },
+    {
+      "id": "aria-supermetrics",
+      "name": "슈퍼 메트릭",
+      "method": "GET",
+      "endpoint": "/api/supermetrics",
+      "description": "슈퍼 메트릭 정의"
+    },
+    {
+      "id": "aria-certificates",
+      "name": "인증서",
+      "method": "GET",
+      "endpoint": "/api/certificates",
+      "description": "인증서 목록"
+    },
+    {
+      "id": "aria-notifications",
+      "name": "알림 설정",
+      "method": "GET",
+      "endpoint": "/api/notifications/rules",
+      "description": "알림 규칙"
+    },
+    {
+      "id": "aria-rest-plugins",
+      "name": "REST 플러그인",
+      "method": "GET",
+      "endpoint": "/api/integrations/plugins",
+      "description": "통합 플러그인"
+    },
+    {
+      "id": "aria-mp",
+      "name": "관리 팩",
+      "method": "GET",
+      "endpoint": "/api/managementpacks",
+      "description": "관리 팩 목록"
+    },
+    {
+      "id": "aria-config",
+      "name": "시스템 설정",
+      "method": "GET",
+      "endpoint": "/api/system/config",
+      "description": "시스템 설정"
+    },
+    {
+      "id": "aria-license",
+      "name": "라이선스",
+      "method": "GET",
+      "endpoint": "/api/license",
+      "description": "라이선스 정보"
+    },
+    {
+      "id": "aria-maintenance",
+      "name": "유지보수 스케줄",
+      "method": "GET",
+      "endpoint": "/api/maintenance/schedules",
+      "description": "유지보수 스케줄"
+    },
+    {
+      "id": "aria-objects",
+      "name": "객체 목록",
+      "method": "GET",
+      "endpoint": "/api/resources?resourceKind=VirtualMachine&pageSize=20",
+      "description": "가상머신 객체 목록"
+    },
+    {
+      "id": "aria-stats",
+      "name": "통계 정보",
+      "method": "GET",
+      "endpoint": "/api/stats/query",
+      "description": "통계 쿼리"
+    },
+    {
+      "id": "aria-troubleshooting",
+      "name": "트러블슈팅",
+      "method": "GET",
+      "endpoint": "/api/troubleshooting",
+      "description": "트러블슈팅 정보"
+    }
+  ]
+}

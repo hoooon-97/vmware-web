@@ -1,0 +1,158 @@
+:root {
+  --bg: #0a0a1a;
+  --surface: #16213e;
+  --surface2: #1a1a2e;
+  --border: #2a2a4a;
+  --text: #e0e0e0;
+  --text2: #888;
+  --accent: #00d4ff;
+  --success: #30d158;
+  --error: #ff453a;
+  --warning: #ff9f0a;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.loading-screen {
+  display: flex; justify-content: center; align-items: center;
+  height: 100vh; color: var(--text2);
+}
+
+/* Login */
+.login-page {
+  display: flex; justify-content: center; align-items: center;
+  min-height: 100vh; padding: 20px;
+}
+.login-card {
+  background: var(--surface); border-radius: 12px; padding: 40px;
+  width: 100%; max-width: 400px;
+}
+.login-card h1 { font-size: 28px; margin-bottom: 8px; color: var(--accent); }
+.login-card .subtitle { color: var(--text2); margin-bottom: 32px; }
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 13px; color: var(--text2); margin-bottom: 6px; }
+.form-group input {
+  width: 100%; padding: 10px 14px; background: var(--bg); border: 1px solid var(--border);
+  border-radius: 6px; color: var(--text); font-size: 14px;
+}
+.form-group input:focus { outline: none; border-color: var(--accent); }
+.btn-primary {
+  width: 100%; padding: 10px; background: var(--accent); color: #000;
+  border: none; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer;
+}
+.btn-primary:hover { opacity: 0.9; }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+.error { color: var(--error); font-size: 13px; margin-bottom: 12px; }
+.toggle-auth { margin-top: 16px; font-size: 13px; color: var(--text2); text-align: center; }
+.toggle-auth button { background: none; border: none; color: var(--accent); cursor: pointer; margin-left: 4px; }
+
+/* Dashboard */
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 24px; background: var(--surface); border-bottom: 1px solid var(--border);
+}
+.topbar h1 { font-size: 18px; color: var(--accent); }
+.topbar-right { display: flex; align-items: center; gap: 12px; }
+.user-email { font-size: 13px; color: var(--text2); }
+.badge {
+  padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600;
+}
+.badge.licensed { background: rgba(48,209,88,0.15); color: var(--success); }
+.badge.trial { background: rgba(255,159,10,0.15); color: var(--warning); }
+.btn-logout {
+  background: none; border: 1px solid var(--border); color: var(--text2);
+  padding: 6px 12px; border-radius: 6px; font-size: 12px; cursor: pointer;
+}
+
+.content { padding: 24px; max-width: 1200px; margin: 0 auto; }
+.section { margin-bottom: 32px; }
+.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.section h2 { font-size: 18px; }
+.btn-add {
+  background: var(--accent); color: #000; border: none; padding: 6px 14px;
+  border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer;
+}
+
+.add-form {
+  display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap;
+}
+.add-form input {
+  padding: 8px 12px; background: var(--bg); border: 1px solid var(--border);
+  border-radius: 6px; color: var(--text); font-size: 13px; flex: 1; min-width: 120px;
+}
+.add-form .btn-primary { width: auto; flex: 0; padding: 8px 20px; }
+
+.connection-list { display: flex; flex-direction: column; gap: 8px; }
+.connection-card {
+  display: flex; justify-content: space-between; align-items: center;
+  background: var(--surface); padding: 14px 18px; border-radius: 8px;
+  border: 1px solid var(--border);
+}
+.conn-info strong { display: block; margin-bottom: 2px; }
+.conn-info span { font-size: 12px; color: var(--text2); }
+.conn-actions { display: flex; gap: 8px; }
+.btn-execute {
+  background: var(--accent); color: #000; padding: 6px 14px;
+  border-radius: 6px; font-size: 12px; font-weight: 600; text-decoration: none;
+}
+.btn-delete {
+  background: none; border: 1px solid var(--error); color: var(--error);
+  padding: 6px 14px; border-radius: 6px; font-size: 12px; cursor: pointer;
+}
+
+.history-list { display: flex; flex-direction: column; gap: 4px; }
+.history-item {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 14px; background: var(--surface); border-radius: 6px; font-size: 13px;
+}
+.history-item .cmd { flex: 1; font-family: monospace; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-right: 12px; }
+.history-item .time { color: var(--text2); font-size: 11px; margin-right: 12px; }
+.history-item .status { font-size: 11px; font-weight: 600; }
+.history-item .status.success { color: var(--success); }
+.history-item .status.error { color: var(--error); }
+.empty { color: var(--text2); font-size: 14px; text-align: center; padding: 24px; }
+
+/* Execute */
+.execute-content { display: flex; height: calc(100vh - 56px); }
+.sidebar {
+  width: 260px; background: var(--surface); border-right: 1px solid var(--border);
+  padding: 16px; overflow-y: auto;
+}
+.sidebar h3 { font-size: 14px; margin-bottom: 16px; }
+.category { margin-bottom: 16px; }
+.category h4 { font-size: 12px; color: var(--accent); margin-bottom: 8px; text-transform: uppercase; }
+.cmd-btn {
+  display: block; width: 100%; text-align: left; padding: 6px 10px;
+  background: none; border: none; color: var(--text); font-size: 12px;
+  cursor: pointer; border-radius: 4px;
+}
+.cmd-btn:hover { background: var(--bg); }
+
+.main-area { flex: 1; display: flex; flex-direction: column; padding: 16px; }
+.exec-form { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.exec-form input, .exec-form textarea {
+  padding: 10px 14px; background: var(--bg); border: 1px solid var(--border);
+  border-radius: 6px; color: var(--text); font-size: 13px; font-family: monospace;
+  resize: vertical;
+}
+.exec-form .btn-primary { width: auto; align-self: flex-end; padding: 10px 24px; }
+
+.result-area { flex: 1; overflow: auto; }
+.result-meta { display: flex; gap: 16px; font-size: 12px; color: var(--text2); margin-bottom: 8px; }
+.result-area pre {
+  background: var(--bg); padding: 14px; border-radius: 6px;
+  font-size: 12px; font-family: monospace; overflow: auto; white-space: pre-wrap;
+}
+.result-area pre.error { color: var(--error); }
+.result-area pre.stderr { color: var(--warning); margin-top: 8px; }
+.btn-back {
+  background: none; border: none; color: var(--accent); font-size: 14px; cursor: pointer;
+}
+.host-info { font-size: 13px; color: var(--text2); }

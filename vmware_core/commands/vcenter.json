@@ -1,0 +1,211 @@
+{
+  "category": "vCenter",
+  "description": "VMware vCenter Server 관리",
+  "connectionType": "ssh",
+  "commands": [
+    {
+      "id": "vc-services",
+      "name": "서비스 상태",
+      "command": "service-control --status --all",
+      "description": "vCenter 전체 서비스 상태"
+    },
+    {
+      "id": "vc-services-running",
+      "name": "실행 중 서비스",
+      "command": "service-control --status | grep running",
+      "description": "실행 중인 서비스만 표시"
+    },
+    {
+      "id": "vc-lookup",
+      "name": "등록 서비스",
+      "command": "lstool list --no-header 2>/dev/null || echo 'lstool not available'",
+      "description": "Lookup Service 등록 서비스"
+    },
+    {
+      "id": "vc-domain",
+      "name": "도메인 목록",
+      "command": "cmsso-util domain-list 2>/dev/null || echo 'SSO domain info'",
+      "description": "SSO 도메인 정보"
+    },
+    {
+      "id": "vc-db-info",
+      "name": "DB 정보",
+      "command": "cat /etc/vmware-vpx/vcdb.properties 2>/dev/null | grep -v password || echo 'DB config not found'",
+      "description": "데이터베이스 설정"
+    },
+    {
+      "id": "vc-db-size",
+      "name": "DB 크기",
+      "command": "du -sh /storage/db/ 2>/dev/null || echo 'DB size info'",
+      "description": "데이터베이스 크기"
+    },
+    {
+      "id": "vc-storage",
+      "name": "스토리지 사용량",
+      "command": "df -h /storage/ 2>/dev/null || df -h /",
+      "description": "디스크 사용량"
+    },
+    {
+      "id": "vc-storage-all",
+      "name": "전체 스토리지",
+      "command": "df -h | grep -E '^/dev|^Filesystem'",
+      "description": "전체 파일시스템 사용량"
+    },
+    {
+      "id": "vc-vpxd-log",
+      "name": "vpxd 로그",
+      "command": "tail -50 /var/log/vmware-vpx/vpxd.log 2>/dev/null || echo 'Log not accessible'",
+      "description": "vpxd 최근 로그"
+    },
+    {
+      "id": "vc-vpxd-error",
+      "name": "vpxd 에러 로그",
+      "command": "grep -i 'error\\|fail' /var/log/vmware-vpx/vpxd.log 2>/dev/null | tail -20 || echo 'No errors found'",
+      "description": "vpxd 에러 로그"
+    },
+    {
+      "id": "vc-certificate",
+      "name": "인증서 정보",
+      "command": "openssl x509 -in /etc/vmware-vpx/ssl/rui.crt -noout -subject -dates -issuer 2>/dev/null || echo 'Certificate not found'",
+      "description": "SSL 인증서 정보"
+    },
+    {
+      "id": "vc-vmon",
+      "name": "vmon 서비스",
+      "command": "vmon-cli -s 2>/dev/null || echo 'vmon-cli not available'",
+      "description": "vMon 서비스 모니터링"
+    },
+    {
+      "id": "vc-license",
+      "name": "라이선스 정보",
+      "command": "vpxd -b 2>/dev/null | head -20 || echo 'License info via API'",
+      "description": "라이선스 정보"
+    },
+    {
+      "id": "vc-event-log",
+      "name": "이벤트 로그",
+      "command": "journalctl -u vpxd -n 50 --no-pager 2>/dev/null || echo 'Systemd journal not available'",
+      "description": "vpxd 이벤트 로그"
+    },
+    {
+      "id": "vc-sso-config",
+      "name": "SSO 설정",
+      "command": "/usr/lib/vmware-vmafd/bin/vmafd-cli get-domain-name --server-name localhost 2>/dev/null || echo 'SSO config'",
+      "description": "SSO 도메인 설정"
+    },
+    {
+      "id": "vc-cert-store",
+      "name": "인증서 저장소",
+      "command": "/usr/lib/vmware-vmafd/bin/vecs-cli entry list --store TRUSTED_ROOTS 2>/dev/null || echo 'Cert store'",
+      "description": "인증서 저장소 목록"
+    },
+    {
+      "id": "vc-psc",
+      "name": "PSC 상태",
+      "command": "cmsso-util --repoint --dc-list 2>/dev/null || echo 'PSC info'",
+      "description": "PSC 상태 정보"
+    },
+    {
+      "id": "vc-topology",
+      "name": "토폴로지",
+      "command": "vmafd-cli get-ls-location --server-name localhost 2>/dev/null || echo 'Topology info'",
+      "description": "서비스 토폴로지"
+    },
+    {
+      "id": "vc-appliance",
+      "name": "어플라이언스 정보",
+      "command": "vmon-cli -l 2>/dev/null || cat /etc/vmware-vpx/vcdb.properties 2>/dev/null | head -5",
+      "description": "vCenter 어플라이언스 정보"
+    },
+    {
+      "id": "vc-network",
+      "name": "네트워크 설정",
+      "command": "ip addr show | grep -E 'inet |^[0-9]' || ifconfig",
+      "description": "네트워크 인터페이스 설정"
+    },
+    {
+      "id": "vc-dns",
+      "name": "DNS 설정",
+      "command": "cat /etc/resolv.conf 2>/dev/null || echo 'DNS config'",
+      "description": "DNS 설정"
+    },
+    {
+      "id": "vc-ntp",
+      "name": "NTP 설정",
+      "command": "ntpq -p 2>/dev/null || chronyc sources 2>/dev/null || echo 'NTP info'",
+      "description": "NTP 시간 동기화"
+    },
+    {
+      "id": "vc-firewall",
+      "name": "방화벽 상태",
+      "command": "iptables -L -n 2>/dev/null | head -30 || echo 'Firewall info'",
+      "description": "방화벽 규칙"
+    },
+    {
+      "id": "vc-process",
+      "name": "프로세스 목록",
+      "command": "ps aux | grep -i vmware | grep -v grep | head -20",
+      "description": "VMware 프로세스 목록"
+    },
+    {
+      "id": "vc-uptime",
+      "name": "시스템 가동 시간",
+      "command": "uptime",
+      "description": "시스템 가동 시간"
+    },
+    {
+      "id": "vc-appliance-mgmt",
+      "name": "어플라이언스 관리",
+      "command": "vmon-cli -l 2>/dev/null | head -30",
+      "description": "어플라이언스 서비스 목록"
+    },
+    {
+      "id": "vc-backup-status",
+      "name": "백업 상태",
+      "command": "backup.list 2>/dev/null || echo 'Backup API required'",
+      "description": "백업 상태 확인"
+    },
+    {
+      "id": "vc-snmp-config",
+      "name": "SNMP 설정",
+      "command": "cat /etc/vmware-vpx/snmp.xml 2>/dev/null || echo 'SNMP config not found'",
+      "description": "SNMP 설정 파일"
+    },
+    {
+      "id": "vc-perf-stats",
+      "name": "성능 통계",
+      "command": "vmstat 1 3",
+      "description": "시스템 성능 통계"
+    },
+    {
+      "id": "vc-memory-usage",
+      "name": "메모리 사용량",
+      "command": "free -h",
+      "description": "메모리 사용량"
+    },
+    {
+      "id": "vc-cpu-usage",
+      "name": "CPU 사용량",
+      "command": "top -bn1 | head -5",
+      "description": "CPU 사용량"
+    },
+    {
+      "id": "vc-disk-io",
+      "name": "디스크 I/O",
+      "command": "iostat -x 1 1 2>/dev/null || echo 'iostat not available'",
+      "description": "디스크 I/O 통계"
+    },
+    {
+      "id": "vc-network-stats",
+      "name": "네트워크 통계",
+      "command": "netstat -s 2>/dev/null | head -30 || ss -s",
+      "description": "네트워크 통계"
+    },
+    {
+      "id": "vc-logs-all",
+      "name": "전체 로그 목록",
+      "command": "ls -la /var/log/vmware-vpx/ 2>/dev/null | head -20",
+      "description": "vCenter 로그 파일 목록"
+    }
+  ]
+}

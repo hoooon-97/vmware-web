@@ -1,0 +1,127 @@
+{
+  "category": "Admin",
+  "description": "VMware 환경 정보 수집 및 관리 스크립트",
+  "connectionType": "ssh",
+  "commands": [
+    {
+      "id": "admin-verify",
+      "name": "환경 검증",
+      "command": "cd /tmp/vmware-admin-scripts && ./verify.sh",
+      "description": "VCSA 환경 검증 — 도구, 서비스, DB 연결 상태 확인"
+    },
+    {
+      "id": "admin-collect-all",
+      "name": "전체 수집",
+      "command": "cd /tmp/vmware-admin-scripts && ./collect-all.sh",
+      "description": "인증서/라이센스/호스트/VM 정보 일괄 수집"
+    },
+    {
+      "id": "admin-certs",
+      "name": "인증서 만료 확인",
+      "command": "cd /tmp/vmware-admin-scripts && ./get-certs.sh",
+      "description": "VECS 스토어 인증서 만료일 수집 (STS/SSL/VMCA)"
+    },
+    {
+      "id": "admin-licenses",
+      "name": "라이센스 확인",
+      "command": "cd /tmp/vmware-admin-scripts && ./get-licenses.sh",
+      "description": "vCenter/ESXi/vSAN 라이센스 만료일 및 사용량"
+    },
+    {
+      "id": "admin-hosts",
+      "name": "호스트 정보",
+      "command": "cd /tmp/vmware-admin-scripts && ./get-hosts.sh",
+      "description": "ESXi 호스트 CPU/RAM/네트워크/데이터스토어 정보"
+    },
+    {
+      "id": "admin-vms",
+      "name": "VM 정보",
+      "command": "cd /tmp/vmware-admin-scripts && ./get-vms.sh",
+      "description": "VM 목록/디스크/스냅샷/네트워크/템플릿 정보"
+    },
+    {
+      "id": "admin-vecs-list",
+      "name": "VECS 스토어 목록",
+      "command": "/usr/lib/vmware-vmafd/bin/vecs-cli entry list --store MACHINE_SSL_CERT",
+      "description": "MACHINE_SSL_CERT 스토어 인증서 목록"
+    },
+    {
+      "id": "admin-vecs-sts",
+      "name": "STS 인증서 확인",
+      "command": "/usr/lib/vmware-vmafd/bin/vecs-cli entry list --store STS_INTERNAL",
+      "description": "STS Internal 서명 인증서 확인"
+    },
+    {
+      "id": "admin-services",
+      "name": "전체 서비스 상태",
+      "command": "service-control --status --all",
+      "description": "vCenter 전체 서비스 상태 확인"
+    },
+    {
+      "id": "admin-db-connect",
+      "name": "DB 연결 테스트",
+      "command": "/usr/lib/vmware-vpostgres/current/bin/psql -d VCDB -U vc -c 'SELECT version();'",
+      "description": "VPXD 데이터베이스 연결 테스트"
+    },
+    {
+      "id": "admin-db-tables",
+      "name": "DB 테이블 목록",
+      "command": "/usr/lib/vmware-vpostgres/current/bin/psql -d VCDB -U vc -c \"SELECT table_name FROM information_schema.tables WHERE table_schema='public' ORDER BY table_name;\"",
+      "description": "VPXD 데이터베이스 테이블 목록"
+    },
+    {
+      "id": "admin-vm-count",
+      "name": "VM 통계",
+      "command": "/usr/lib/vmware-vpostgres/current/bin/psql -d VCDB -U vc -t -c \"SELECT power_state, COUNT(*) FROM vpx_vm GROUP BY power_state;\"",
+      "description": "VM 전원 상태별 통계"
+    },
+    {
+      "id": "admin-host-count",
+      "name": "호스트 통계",
+      "command": "/usr/lib/vmware-vpostgres/current/bin/psql -d VCDB -U vc -t -c \"SELECT connection_state, COUNT(*) FROM vpx_host GROUP BY connection_state;\"",
+      "description": "호스트 연결 상태별 통계"
+    },
+    {
+      "id": "admin-snapshot-list",
+      "name": "스냅샷 목록",
+      "command": "/usr/lib/vmware-vpostgres/current/bin/psql -d VCDB -U vc -t -A -c \"SELECT v.name, s.name, s.create_time FROM vpx_snapshot s JOIN vpx_vm v ON s.vm_id = v.id ORDER BY s.create_time DESC LIMIT 20;\"",
+      "description": "전체 VM 스냅샷 목록 (최근 20개)"
+    },
+    {
+      "id": "admin-datastore-usage",
+      "name": "데이터스토어 사용량",
+      "command": "/usr/lib/vmware-vpostgres/current/bin/psql -d VCDB -U vc -t -A -F'|' -c \"SELECT name, type, ROUND(capacity/1073741824.0,1), ROUND(free_space/1073741824.0,1) FROM vpx_datastore ORDER BY name;\"",
+      "description": "데이터스토어 용량/여유 공간 확인"
+    },
+    {
+      "id": "admin-ntp-check",
+      "name": "NTP 설정 확인",
+      "command": "ntpq -p 2>/dev/null; echo '---'; cat /etc/ntp.conf 2>/dev/null | grep -v '^#' | grep -v '^$'",
+      "description": "VCSA NTP 서버 및 동기화 상태"
+    },
+    {
+      "id": "admin-dns-check",
+      "name": "DNS 설정 확인",
+      "command": "cat /etc/resolv.conf | grep -v '^#'; echo '---'; hostname -f",
+      "description": "VCSA DNS 설정 및 호스트명"
+    },
+    {
+      "id": "admin-cert-expiry-quick",
+      "name": "인증서 만료 빠른 확인",
+      "command": "for store in MACHINE_SSL_CERT machine vsphere-webclient vpxd; do echo \"=== $store ===\"; /usr/lib/vmware-vmafd/bin/vecs-cli entry list --store $store 2>/dev/null | grep Alias; done",
+      "description": "주요 VECS 스토어 인증서 별칭 목록"
+    },
+    {
+      "id": "admin-disk-usage",
+      "name": "디스크 사용량",
+      "command": "df -h /storage/ /storage/db/ /storage/log/ 2>/dev/null || df -h /",
+      "description": "VCSA 스토리지 파티션 사용량"
+    },
+    {
+      "id": "admin-network-info",
+      "name": "네트워크 정보",
+      "command": "ip addr show | grep 'inet ' | grep -v '127.0.0.1'; echo '---'; ip route show default",
+      "description": "VCSA 네트워크 인터페이스 및 라우팅 정보"
+    }
+  ]
+}

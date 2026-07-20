@@ -1,0 +1,241 @@
+{
+  "category": "ESXi",
+  "description": "VMware ESXi 호스트 관리",
+  "connectionType": "ssh",
+  "commands": [
+    {
+      "id": "esxi-version",
+      "name": "버전 확인",
+      "command": "esxcli system version get",
+      "description": "ESXi 버전 및 빌드 정보"
+    },
+    {
+      "id": "esxi-hardware",
+      "name": "하드웨어 정보",
+      "command": "esxcli hardware platform get",
+      "description": "서버 하드웨어 플랫폼 정보"
+    },
+    {
+      "id": "esxi-vm-list",
+      "name": "VM 목록",
+      "command": "vim-cmd vmsvc/getallvms",
+      "description": "등록된 가상머신 목록"
+    },
+    {
+      "id": "esxi-vm-running",
+      "name": "실행 중 VM",
+      "command": "vim-cmd vmsvc/getallvms | head -1; vim-cmd vmsvc/getallvms | grep -v '^Vmid' | while read line; do vmid=$(echo $line | awk '{print $1}'); state=$(vim-cmd vmsvc/power.getstate $vmid 2>/dev/null | tail -1); if [ \"$state\" = \"Powered on\" ]; then echo \"$line - $state\"; fi; done",
+      "description": "전원이 켜진 VM 목록"
+    },
+    {
+      "id": "esxi-datastore",
+      "name": "데이터스토어",
+      "command": "esxcli storage filesystem list",
+      "description": "데이터스토어 목록 및 용량"
+    },
+    {
+      "id": "esxi-datastore-usage",
+      "name": "데이터스토어 사용량",
+      "command": "df -h | grep -E '^/vmfs|^Filesystem'",
+      "description": "데이터스토어 디스크 사용량"
+    },
+    {
+      "id": "esxi-network",
+      "name": "네트워크 인터페이스",
+      "command": "esxcli network ip interface list",
+      "description": "네트워크 인터페이스 설정"
+    },
+    {
+      "id": "esxi-network-vmk",
+      "name": "vmkernel 인터페이스",
+      "command": "esxcli network ip interface ipv4 get",
+      "description": "vmkernel 인터페이스 IP 정보"
+    },
+    {
+      "id": "esxi-network-physical",
+      "name": "물리 NIC",
+      "command": "esxcli network nic list",
+      "description": "물리 네트워크 어댑터 목록"
+    },
+    {
+      "id": "esxi-network-vswitch",
+      "name": "가상 스위치",
+      "command": "esxcli network vswitch standard list",
+      "description": "표준 가상 스위치 목록"
+    },
+    {
+      "id": "esxi-network-portgroup",
+      "name": "포트 그룹",
+      "command": "esxcli network vswitch standard portgroup list",
+      "description": "포트 그룹 목록"
+    },
+    {
+      "id": "esxi-service",
+      "name": "서비스 상태",
+      "command": "esxcli system service list",
+      "description": "시스템 서비스 상태"
+    },
+    {
+      "id": "esxi-syslog",
+      "name": "syslog 설정",
+      "command": "esxcli system syslog config get",
+      "description": "syslog 설정"
+    },
+    {
+      "id": "esxi-ntp",
+      "name": "NTP 설정",
+      "command": "esxcli system ntp get",
+      "description": "NTP 시간 동기화 설정"
+    },
+    {
+      "id": "esxi-ntp-servers",
+      "name": "NTP 서버 목록",
+      "command": "esxcli system ntp server list",
+      "description": "NTP 서버 목록"
+    },
+    {
+      "id": "esxi-firewall",
+      "name": "방화벽 규칙",
+      "command": "esxcli network firewall ruleset list",
+      "description": "방화벽 규칙 목록"
+    },
+    {
+      "id": "esxi-firewall-status",
+      "name": "방화벽 상태",
+      "command": "esxcli network firewall get",
+      "description": "방화벽 활성화 상태"
+    },
+    {
+      "id": "esxi-stats",
+      "name": "시스템 리소스",
+      "command": "esxcli system stats uptime get",
+      "description": "시스템 가동 시간"
+    },
+    {
+      "id": "esxi-cpu",
+      "name": "CPU 정보",
+      "command": "esxcli hardware cpu list",
+      "description": "CPU 정보"
+    },
+    {
+      "id": "esxi-memory",
+      "name": "메모리 정보",
+      "command": "esxcli hardware memory get",
+      "description": "메모리 정보"
+    },
+    {
+      "id": "esxi-storage-adapter",
+      "name": "스토리지 어댑터",
+      "command": "esxcli storage core adapter list",
+      "description": "스토리지 어댑터 목록"
+    },
+    {
+      "id": "esxi-storage-device",
+      "name": "스토리지 디바이스",
+      "command": "esxcli storage core device list",
+      "description": "스토리지 디바이스 목록"
+    },
+    {
+      "id": "esxi-storage-path",
+      "name": "스토리지 경로",
+      "command": "esxcli storage core path list",
+      "description": "스토리지 경로 목록"
+    },
+    {
+      "id": "esxi-iscsi",
+      "name": "iSCSI 설정",
+      "command": "esxcli iscsi adapter list",
+      "description": "iSCSI 어댑터 목록"
+    },
+    {
+      "id": "esxi-snmp",
+      "name": "SNMP 설정",
+      "command": "esxcli system snmp get",
+      "description": "SNMP 설정"
+    },
+    {
+      "id": "esxi-ssh-status",
+      "name": "SSH 상태",
+      "command": "esxcli system service list | grep ssh",
+      "description": "SSH 서비스 상태"
+    },
+    {
+      "id": "esxi-dcui",
+      "name": "DCUI 상태",
+      "command": "esxcli system settings advanced list -o /UserVars/DCUIEnabled",
+      "description": "DCUI 활성화 상태"
+    },
+    {
+      "id": "esxi-maintenance",
+      "name": "유지보수 모드",
+      "command": "vim-cmd hostsvc/hostsummary | grep inMaintenanceMode",
+      "description": "유지보수 모드 상태"
+    },
+    {
+      "id": "esxi-logs",
+      "name": "최근 로그",
+      "command": "tail -20 /var/log/syslog.log",
+      "description": "최근 시스템 로그"
+    },
+    {
+      "id": "esxi-vmfs-version",
+      "name": "VMFS 버전",
+      "command": "esxcli storage vmfs extent list",
+      "description": "VMFS 볼륨 정보"
+    },
+    {
+      "id": "esxi-vm-detail",
+      "name": "VM 상세 정보",
+      "command": "vim-cmd vmsvc/get.summary $(vim-cmd vmsvc/getallvms | grep -v '^Vmid' | head -1 | awk '{print $1}') 2>/dev/null | head -30",
+      "description": "첫 번째 VM 상세 정보"
+    },
+    {
+      "id": "esxi-datastore-iops",
+      "name": "데이터스토어 IOPS",
+      "command": "esxcli storage vmfs extent list | while read line; do echo \"$line\"; done",
+      "description": "데이터스토어 IOPS 정보"
+    },
+    {
+      "id": "esxi-cpu-usage",
+      "name": "CPU 사용률",
+      "command": "esxcli hardware cpu global get 2>/dev/null || vmstat 1 1",
+      "description": "CPU 사용률"
+    },
+    {
+      "id": "esxi-memory-usage",
+      "name": "메모리 사용률",
+      "command": "esxcli system memory get",
+      "description": "메모리 사용률"
+    },
+    {
+      "id": "esxi-vswitch-info",
+      "name": "vSwitch 상세",
+      "command": "esxcli network vswitch standard list -v",
+      "description": "가상 스위치 상세 정보"
+    },
+    {
+      "id": "esxi-iscsi-iqn",
+      "name": "iSCSI IQN",
+      "command": "esxcli iscsi adapter get -A vmhba64 2>/dev/null | grep 'iSCSI Name' || echo 'iSCSI adapter not found'",
+      "description": "iSCSI 어댑터 IQN"
+    },
+    {
+      "id": "esxi-vmotion",
+      "name": "vMotion 설정",
+      "command": "esxcli network ip interface list | grep -A2 vmk",
+      "description": "vMotion 네트워크 인터페이스"
+    },
+    {
+      "id": "esxi-syslog-server",
+      "name": "syslog 서버",
+      "command": "esxcli system syslog config get | grep 'Remote Host'",
+      "description": "syslog 원격 서버 설정"
+    },
+    {
+      "id": "esxi-time",
+      "name": "시스템 시간",
+      "command": "date && esxcli system time get",
+      "description": "시스템 현재 시간"
+    }
+  ]
+}

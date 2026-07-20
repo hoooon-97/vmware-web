@@ -1,0 +1,246 @@
+{
+  "category": "AVI",
+  "description": "VMware NSX Advanced Load Balancer (AVI Networks) 관리",
+  "connectionType": "api",
+  "baseUrl": "https://{host}",
+  "commands": [
+    {
+      "id": "avi-controller",
+      "name": "컨트롤러 상태",
+      "method": "GET",
+      "endpoint": "/api/controller",
+      "description": "AVI 컨트롤러 상태"
+    },
+    {
+      "id": "avi-controller-status",
+      "name": "컨트롤러 상세",
+      "method": "GET",
+      "endpoint": "/api/controller/status",
+      "description": "컨트롤러 상세 상태"
+    },
+    {
+      "id": "avi-serviceengines",
+      "name": "서비스엔진 목록",
+      "method": "GET",
+      "endpoint": "/api/serviceengine",
+      "description": "서비스엔진"
+    },
+    {
+      "id": "avi-se-details",
+      "name": "서비스엔진 상세",
+      "method": "GET",
+      "endpoint": "/api/serviceengine?include_name=true",
+      "description": "서비스엔진 상세 정보"
+    },
+    {
+      "id": "avi-virtualservices",
+      "name": "가상 서비스",
+      "method": "GET",
+      "endpoint": "/api/virtualservice",
+      "description": "가상 서비스"
+    },
+    {
+      "id": "avi-vs-details",
+      "name": "가상 서비스 상세",
+      "method": "GET",
+      "endpoint": "/api/virtualservice?include_name=true",
+      "description": "가상 서비스 상세"
+    },
+    {
+      "id": "avi-pools",
+      "name": "풀 목록",
+      "method": "GET",
+      "endpoint": "/api/pool",
+      "description": "서버 풀"
+    },
+    {
+      "id": "avi-pool-details",
+      "name": "풀 상세",
+      "method": "GET",
+      "endpoint": "/api/pool?include_name=true",
+      "description": "풀 상세 정보"
+    },
+    {
+      "id": "avi-pool-health",
+      "name": "풀 헬스",
+      "method": "GET",
+      "endpoint": "/api/pool/health",
+      "description": "풀 헬스 상태"
+    },
+    {
+      "id": "avi-gslb",
+      "name": "GSLB 상태",
+      "method": "GET",
+      "endpoint": "/api/gslb",
+      "description": "글로벌 로드 밸런싱"
+    },
+    {
+      "id": "avi-gslb-services",
+      "name": "GSLB 서비스",
+      "method": "GET",
+      "endpoint": "/api/gslbservice",
+      "description": "GSLB 서비스"
+    },
+    {
+      "id": "avi-certificates",
+      "name": "인증서 목록",
+      "method": "GET",
+      "endpoint": "/api/sslkeyandcertificate",
+      "description": "SSL 인증서"
+    },
+    {
+      "id": "avi-waf",
+      "name": "WAF 정책",
+      "method": "GET",
+      "endpoint": "/api/wafpolicy",
+      "description": "웹 방화벽 정책"
+    },
+    {
+      "id": "avi-waf-profiles",
+      "name": "WAF 프로필",
+      "method": "GET",
+      "endpoint": "/api/wafprofile",
+      "description": "WAF 프로필"
+    },
+    {
+      "id": "avi-networkprofile",
+      "name": "네트워크 프로필",
+      "method": "GET",
+      "endpoint": "/api/networkprofile",
+      "description": "네트워크 프로필"
+    },
+    {
+      "id": "avi-applicationprofile",
+      "name": "애플리케이션 프로필",
+      "method": "GET",
+      "endpoint": "/api/applicationprofile",
+      "description": "앱 프로필"
+    },
+    {
+      "id": "avi-healthmonitor",
+      "name": "헬스 모니터",
+      "method": "GET",
+      "endpoint": "/api/healthmonitor",
+      "description": "헬스 모니터"
+    },
+    {
+      "id": "avi-cloudconnector",
+      "name": "클라우드 커넥터",
+      "method": "GET",
+      "endpoint": "/api/cloudconnector",
+      "description": "클라우드 커넥터"
+    },
+    {
+      "id": "avi-cloud",
+      "name": "클라우드",
+      "method": "GET",
+      "endpoint": "/api/cloud",
+      "description": "클라우드 설정"
+    },
+    {
+      "id": "avi-licensing",
+      "name": "라이선스 정보",
+      "method": "GET",
+      "endpoint": "/api/licensing",
+      "description": "라이선스"
+    },
+    {
+      "id": "avi-users",
+      "name": "사용자 목록",
+      "method": "GET",
+      "endpoint": "/api/user",
+      "description": "사용자"
+    },
+    {
+      "id": "avi-tenants",
+      "name": "테넌트 목록",
+      "method": "GET",
+      "endpoint": "/api/tenant",
+      "description": "테넌트"
+    },
+    {
+      "id": "avi-roles",
+      "name": "역할 목록",
+      "method": "GET",
+      "endpoint": "/api/role",
+      "description": "역할"
+    },
+    {
+      "id": "avi-alertconfig",
+      "name": "알림 설정",
+      "method": "GET",
+      "endpoint": "/api/alertconfig",
+      "description": "알림 설정"
+    },
+    {
+      "id": "avi-alert",
+      "name": "알림 목록",
+      "method": "GET",
+      "endpoint": "/api/alert",
+      "description": "알림"
+    },
+    {
+      "id": "avi-analytics",
+      "name": "분석 설정",
+      "method": "GET",
+      "endpoint": "/api/analytics",
+      "description": "분석 설정"
+    },
+    {
+      "id": "avi-autoscale",
+      "name": "오토스케일",
+      "method": "GET",
+      "endpoint": "/api/autoscalelaunchconfig",
+      "description": "오토스케일 설정"
+    },
+    {
+      "id": "avi-backup",
+      "name": "백업 설정",
+      "method": "GET",
+      "endpoint": "/api/backup",
+      "description": "백업 설정"
+    },
+    {
+      "id": "avi-dns-vs",
+      "name": "DNS 가상 서비스",
+      "method": "GET",
+      "endpoint": "/api/virtualservice?cloud_ref.type=DNS",
+      "description": "DNS 가상 서비스"
+    },
+    {
+      "id": "avi-pki-profile",
+      "name": "PKI 프로필",
+      "method": "GET",
+      "endpoint": "/api/pkiprofile",
+      "description": "PKI 프로필"
+    },
+    {
+      "id": "avi-ssl-profile",
+      "name": "SSL 프로필",
+      "method": "GET",
+      "endpoint": "/api/sslprofile",
+      "description": "SSL 프로필"
+    },
+    {
+      "id": "avi-vsvip",
+      "name": "VS VIP",
+      "method": "GET",
+      "endpoint": "/api/vsvip",
+      "description": "가상 서비스 VIP"
+    },
+    {
+      "id": "avi-server",
+      "name": "서버 목록",
+      "method": "GET",
+      "endpoint": "/api/server",
+      "description": "풀 서버 목록"
+    },
+    {
+      "id": "avi-string-group",
+      "name": "String 그룹",
+      "method": "GET",
+      "endpoint": "/api/stringgroup",
+      "description": "String 그룹"
+    }
+  ]
+}

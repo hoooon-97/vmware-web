@@ -1,0 +1,246 @@
+{
+  "category": "NSX",
+  "description": "VMware NSX Manager 관리",
+  "connectionType": "api",
+  "baseUrl": "https://{host}",
+  "commands": [
+    {
+      "id": "nsx-cluster",
+      "name": "클러스터 상태",
+      "method": "GET",
+      "endpoint": "/api/v1/cluster/status",
+      "description": "NSX 클러스터 상태"
+    },
+    {
+      "id": "nsx-nodes",
+      "name": "매니저 노드",
+      "method": "GET",
+      "endpoint": "/api/v1/cluster",
+      "description": "NSX 매니저 노드"
+    },
+    {
+      "id": "nsx-transport-zones",
+      "name": "트랜스포트 존",
+      "method": "GET",
+      "endpoint": "/api/v1/transport-zones",
+      "description": "트랜스포트 존 목록"
+    },
+    {
+      "id": "nsx-segments",
+      "name": "세그먼트 목록",
+      "method": "GET",
+      "endpoint": "/policy/api/v1/infra/segments",
+      "description": "네트워크 세그먼트"
+    },
+    {
+      "id": "nsx-segment-ports",
+      "name": "세그먼트 포트",
+      "method": "GET",
+      "endpoint": "/policy/api/v1/infra/segments/default/ports",
+      "description": "세그먼트 포트"
+    },
+    {
+      "id": "nsx-tier0",
+      "name": "T0 게이트웨이",
+      "method": "GET",
+      "endpoint": "/policy/api/v1/infra/tier-0s",
+      "description": "Tier-0 게이트웨이"
+    },
+    {
+      "id": "nsx-tier1",
+      "name": "T1 게이트웨이",
+      "method": "GET",
+      "endpoint": "/policy/api/v1/infra/tier-1s",
+      "description": "Tier-1 게이트웨이"
+    },
+    {
+      "id": "nsx-firewall",
+      "name": "방화벽 규칙",
+      "method": "GET",
+      "endpoint": "/policy/api/v1/infra/domains/default/security-policies",
+      "description": "보안 정책"
+    },
+    {
+      "id": "nsx-firewall-stats",
+      "name": "방화벽 통계",
+      "method": "GET",
+      "endpoint": "/api/v1/firewall/stats",
+      "description": "방화벽 통계"
+    },
+    {
+      "id": "nsx-nat",
+      "name": "NAT 규칙",
+      "method": "GET",
+      "endpoint": "/policy/api/v1/infra/tier-0s/default/nat",
+      "description": "NAT 규칙"
+    },
+    {
+      "id": "nsx-nat-stats",
+      "name": "NAT 통계",
+      "method": "GET",
+      "endpoint": "/api/v1/logical-routers/nat/rules/stats",
+      "description": "NAT 통계"
+    },
+    {
+      "id": "nsx-loadbalancer",
+      "name": "로드 밸런서",
+      "method": "GET",
+      "endpoint": "/api/v1/loadbalancer/services",
+      "description": "LB 서비스"
+    },
+    {
+      "id": "nsx-lb-pools",
+      "name": "LB 풀",
+      "method": "GET",
+      "endpoint": "/api/v1/loadbalancer/pools",
+      "description": "로드 밸런서 풀"
+    },
+    {
+      "id": "nsx-lb-virtual-servers",
+      "name": "LB 가상 서버",
+      "method": "GET",
+      "endpoint": "/api/v1/loadbalancer/virtual-servers",
+      "description": "LB 가상 서버"
+    },
+    {
+      "id": "nsx-dhcp",
+      "name": "DHCP 서버",
+      "method": "GET",
+      "endpoint": "/api/v1/dhcp/servers",
+      "description": "DHCP 서버"
+    },
+    {
+      "id": "nsx-dhcp-relay",
+      "name": "DHCP 릴레이",
+      "method": "GET",
+      "endpoint": "/api/v1/dhcp/relays",
+      "description": "DHCP 릴레이"
+    },
+    {
+      "id": "nsx-dns",
+      "name": "DNS 포워더",
+      "method": "GET",
+      "endpoint": "/api/v1/dns/forwarders",
+      "description": "DNS 포워더"
+    },
+    {
+      "id": "nsx-certificates",
+      "name": "인증서 목록",
+      "method": "GET",
+      "endpoint": "/api/v1/trust-management/certificates",
+      "description": "인증서"
+    },
+    {
+      "id": "nsx-identity",
+      "name": "ID 소스",
+      "method": "GET",
+      "endpoint": "/api/v1/trust-management/identity-sources",
+      "description": "ID 소스"
+    },
+    {
+      "id": "nsx-edges",
+      "name": "엣지 노드",
+      "method": "GET",
+      "endpoint": "/api/v1/edge-nodes",
+      "description": "엣지 노드"
+    },
+    {
+      "id": "nsx-edge-clusters",
+      "name": "엣지 클러스터",
+      "method": "GET",
+      "endpoint": "/api/v1/edge-clusters",
+      "description": "엣지 클러스터"
+    },
+    {
+      "id": "nsx-logical-switches",
+      "name": "논리 스위치",
+      "method": "GET",
+      "endpoint": "/api/v1/logical-switches",
+      "description": "논리 스위치"
+    },
+    {
+      "id": "nsx-logical-ports",
+      "name": "논리 포트",
+      "method": "GET",
+      "endpoint": "/api/v1/logical-ports",
+      "description": "논리 포트"
+    },
+    {
+      "id": "nsx-fabric-nodes",
+      "name": "패브릭 노드",
+      "method": "GET",
+      "endpoint": "/api/v1/fabric/nodes",
+      "description": "패브릭 노드"
+    },
+    {
+      "id": "nsx-ip-pools",
+      "name": "IP 풀",
+      "method": "GET",
+      "endpoint": "/api/v1/pools/ip-pools",
+      "description": "IP 풀"
+    },
+    {
+      "id": "nsx-ip-blocks",
+      "name": "IP 블록",
+      "method": "GET",
+      "endpoint": "/api/v1/pools/ip-blocks",
+      "description": "IP 블록"
+    },
+    {
+      "id": "nsx-groups",
+      "name": "그룹 목록",
+      "method": "GET",
+      "endpoint": "/policy/api/v1/infra/domains/default/groups",
+      "description": "그룹 목록"
+    },
+    {
+      "id": "nsx-context-profiles",
+      "name": "컨텍스트 프로필",
+      "method": "GET",
+      "endpoint": "/policy/api/v1/infra/context-profiles",
+      "description": "컨텍스트 프로필"
+    },
+    {
+      "id": "nsx-ipfix",
+      "name": "IPFIX 설정",
+      "method": "GET",
+      "endpoint": "/api/v1/ipfix/collectorconfigs",
+      "description": "IPFIX 컬렉터 설정"
+    },
+    {
+      "id": "nsx-traceflow",
+      "name": "Traceflow",
+      "method": "GET",
+      "endpoint": "/api/v1/traceflows",
+      "description": "Traceflow 진단"
+    },
+    {
+      "id": "nsx-bridge-clusters",
+      "name": "브릿지 클러스터",
+      "method": "GET",
+      "endpoint": "/api/v1/bridge-clusters",
+      "description": "브릿지 클러스터"
+    },
+    {
+      "id": "nsx-metadata-proxy",
+      "name": "메타데이터 프록시",
+      "method": "GET",
+      "endpoint": "/api/v1/fabric/metadata-proxies",
+      "description": "메타데이터 프록시"
+    },
+    {
+      "id": "nsx-locale-services",
+      "name": "로케일 서비스",
+      "method": "GET",
+      "endpoint": "/policy/api/v1/infra/tier-0s/default/locale-services",
+      "description": "로케일 서비스"
+    },
+    {
+      "id": "nsx-realization",
+      "name": "실현 상태",
+      "method": "GET",
+      "endpoint": "/api/v1/infra/realized-state/realized-entities",
+      "description": "정책 실현 상태"
+    }
+  ]
+}
