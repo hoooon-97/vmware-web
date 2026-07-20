@@ -12,8 +12,8 @@ const executionRoutes = require('./routes/execution');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(helmet());
-app.use(cors({ origin: process.env.CLIENT_URL || 'http://localhost:5173', credentials: true }));
+app.use(helmet({ contentSecurityPolicy: false }));
+app.use(cors());
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
@@ -25,6 +25,13 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+// Serve static frontend in production
+const clientBuild = path.join(__dirname, '..', 'client', 'dist');
+app.use(express.static(clientBuild));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(clientBuild, 'index.html'));
+});
+
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`VMware Core Web running on port ${PORT}`);
 });
